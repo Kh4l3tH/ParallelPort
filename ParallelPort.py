@@ -3,40 +3,40 @@ import parallel
 
 class ParallelPort():
     def __init__(self, port):
-        self.pport = parallel.Parallel(port)
+        self.parport = parallel.Parallel(port)
 
     def setPin(self, pin, state):
         if pin == 1:
-            self.pport.setDataStrobe(state)
+            self.parport.setDataStrobe(state)
         elif 2 <= pin <= 9:
             if state:
                 mask = 2**(pin-2)
-                self.pport.setData(self.pport.getData() | mask)
+                self.parport.setData(self.parport.getData() | mask)
             else:
                 mask = 255-2**(pin-2)
-                self.pport.setData(self.pport.getData() & mask)
+                self.parport.setData(self.parport.getData() & mask)
         elif pin == 14:
-            self.pport.setAutoFeed(state)
+            self.parport.setAutoFeed(state)
         elif pin == 16:
-            self.pport.setInitOut(state)
+            self.parport.setInitOut(state)
         elif pin == 17:
-            self.pport.setSelect(state)
+            self.parport.setSelect(state)
         else:
             raise ValueError("Pin {0} can't be set!".format(pin))
 
     def getPin(self, pin):
         if pin == 10:
-            return int(self.pport.getInAcknowledge())
+            return int(self.parport.getInAcknowledge())
         elif pin == 11:
-            return int(self.pport.getInBusy())
+            return int(self.parport.getInBusy())
         elif pin == 12:
-            return int(self.pport.getInPaperOut())
+            return int(self.parport.getInPaperOut())
         elif pin == 13:
-            return int(self.pport.getInSelected())
+            return int(self.parport.getInSelected())
         elif pin == 15:
-            return int(self.pport.getInError())
+            return int(self.parport.getInError())
         elif 2 <= pin <= 9:
-            data = '{0:08b}'.format(self.pport.getData())
+            data = '{0:08b}'.format(self.parport.getData())
             return int(data[1-pin])
         else:
             raise ValueError("Pin {0} can't be read!'.format(pin))
