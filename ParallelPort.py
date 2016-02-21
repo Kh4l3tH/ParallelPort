@@ -39,4 +39,4 @@ class ParallelPort():
             data = '{0:08b}'.format(self.parport.getData())
             return int(data[1-pin])
         else:
-            raise ValueError("Pin {0} can't be read!'.format(pin))
+            raise ValueError("Pin {0} can't be read!".format(pin))
