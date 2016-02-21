@@ -22,7 +22,7 @@ class ParallelPort():
         elif pin == 17:
             self.pport.setSelect(state)
         else:
-            raise ValueError('Pin {0} kann nicht gesetzt werden!'.format(pin))
+            raise ValueError("Pin {0} can't be set!".format(pin))
 
     def getPin(self, pin):
         if pin == 10:
@@ -39,4 +39,4 @@ class ParallelPort():
             data = '{0:08b}'.format(self.pport.getData())
             return int(data[1-pin])
         else:
-            raise ValueError('Pin {0} kann nicht gelesen werden!'.format(pin))
+            raise ValueError("Pin {0} can't be read!'.format(pin))
