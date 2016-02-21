@@ -5,11 +5,11 @@ class ParallelPort():
     def __init__(self, port):
         self.parport = parallel.Parallel(port)
 
-    def setPin(self, pin, state):
+    def setPin(self, pin, state=True):
         if pin == 1:
             self.parport.setDataStrobe(state)
         elif 2 <= pin <= 9:
-            if state:
+            if state == True:
                 mask = 2**(pin-2)
                 self.parport.setData(self.parport.getData() | mask)
             else:
