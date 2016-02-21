@@ -1,4 +1,4 @@
-from lib import parallel
+import parallel
 
 
 class ParallelPort():
